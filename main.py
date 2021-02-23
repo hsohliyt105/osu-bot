@@ -18,8 +18,8 @@ async def on_ready():
     
 @client.event
 async def on_message(message):
-    if message.lower() == "hw":
-        await message.channel.send("Hello world!")
+    if message.lower() == "!Hello":
+        await message.channel.send(f"Hello {message.author}!")
         
     return
 
