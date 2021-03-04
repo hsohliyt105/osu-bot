@@ -2,10 +2,6 @@
 
 import os
 import datetime
-import shutil
-import math
-from enum import Enum
-import pathlib
 import time
 import random
 import json
@@ -24,3 +20,7 @@ class commands:
         self.message.channel.send("Hello world!")
         
         return
+
+    def current_time(self):
+        time_now = datetime.time
+        self.message.channel.send(f"The time now is {time_now}.")
