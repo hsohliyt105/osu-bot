@@ -16,11 +16,11 @@ class commands:
         
         return
         
-    def hello_world(self):
+    async def hello_world(self):
         self.message.channel.send("Hello world!")
         
         return
 
-    def current_time(self):
+    async def current_time(self):
         time_now = datetime.time
         self.message.channel.send(f"The time now is {time_now}.")
