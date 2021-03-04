@@ -5,6 +5,8 @@ import os
 import discord
 from dotenv import load_dotenv
 
+import commands
+
 load_dotenv(encoding="UTF-8")
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -19,7 +21,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.lower() == "!Hello":
-        await message.channel.send(f"Hello {message.author}!")
+        await commands.command.hello_world()
         
     return
 
