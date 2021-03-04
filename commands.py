@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
 import datetime
-import time
-import random
-import json
 
 import discord
 
