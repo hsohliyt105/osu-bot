@@ -20,8 +20,23 @@ async def on_ready():
     
 @client.event
 async def on_message(message):
-    if message.lower() == "!Hello":
-        await commands.command.hello_world()
+    print(f"{datetime.now()} {message.channel} {message.author} {message.content}")
+
+    if message.author == client.user or message.author.bot:
+        return
+
+    if message.content.startswith("!"):
+        string = message.content.split()
+
+        if len(string[0]) > 1:
+            string[0] = string[0][1:]
+        else:
+            return
+    
+        if message.lower() == "!Hello":
+            await commands.command.hello_world()
+
+        if message
         
     return
 
