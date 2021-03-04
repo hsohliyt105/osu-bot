@@ -26,17 +26,18 @@ async def on_message(message):
         return
 
     if message.content.startswith("!"):
-        string = message.content.split()
+        message_string = message.content.split()
 
         if len(string[0]) > 1:
-            string[0] = string[0][1:]
+            message_string[0] = message_string[0][1:]
         else:
             return
     
-        if message.lower() == "!Hello":
-            await commands.command.hello_world()
+        if message_string[0].lower() == "hello":
+            await commands.Commands.hello_world()
 
-        if message
+        elif message_string[0].lower() == "time":
+            await commands.commands.current_time()
         
     return
 
