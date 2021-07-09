@@ -17,7 +17,7 @@ load_dotenv(encoding="UTF-8")
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
-client = discord.Client(activity=discord.Game("!명령어 / !help"), intents=intents)
+client = discord.Client(activity=discord.Game("!도움말 / !help"), intents=intents)
 
 #가동시의 반응
 @client.event

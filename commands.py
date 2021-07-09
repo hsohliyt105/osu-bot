@@ -494,4 +494,78 @@ class commands(object):
         return
 
     async def top(self, string):
+        f = open('translation/'+self.user['language']+'.json')
+        trans = json.load(f)['top']
+        f.close()
+        f = open('translation/variables.json')
+        trans_var = json.load(f)
+        f.close()
+        
+        s_mode = trans['mode']
+        s_osu_id = trans['osu_id']
+        s_or = trans['or']
+        s_username = trans['username']
+        s_osu_user_url = trans['osu_user_url']
+        s_osu_user_not_set = trans['osu_user_not_set']
+        s_of_top = trans['of_top'] 
+        s_no_top_play = trans['no_top_play']
+        s_user_not_found = trans['user_not_found']
+        s_completed = trans['completed']
+
+        mode = 0
+        osu_id = ""
+        mode_found = False
+        limit = 5
+
+        if functions.Converter.find_username(self.message.content) is not None:
+            current_user = self._api.get_user(username=functions.Converter.find_username(self.message.content))
+            osu_id = current_user.userId
+
+        for i in range(len(string)):
+            if functions.Identifier.is_mode(string[i]):
+                mode = translator.alias.mode(string[i])
+                mode_found = True
+
+            elif functions.Identifier.is_int(string[i]):
+                osu_id = int(string[i])
+
+            elif functions.Identifier.is_osu_user_url(string[i]):
+                osu_id = functions.Converter.url_to_osu_user(string[i]).userId
+
+        if osu_id == "":
+            temp = self._helpOsu.load_osu(self.message, string)
+            if temp is not None:
+                osu_id = temp['osu_id']
+                if not mode_found:
+                    mode = temp['mode']
+
+        top_plays = self._api.get_user_best(user_id=osu_id, mode=mode, limit=limit)
+        if functions.Converter.find_username(self.message.content) is None:
+            current_user = self._api.get_user(user_id=osu_id, mode=mode)
+        user_image_url = self._api.get_user_image_url(osu_id)
+
+        if current_user is None:
+            await self.message.channel.send(s_user_not_found)
+            return
+
+        if top_plays is None:
+            await self.message.channel.send(s_no_top_play)
+            return
+
+        name = f"{current_user.username}{s_of_top}"
+
+        colour = functions.HelpDiscord.get_my_colour(self.client, self.message.channel)
+
+        description = ""
+
+        for i in range(limit):
+            beatmap = self._api.get_beatmaps(top_plays[i].beatmapId, mode=mode, mods=top_plays[i].enabledMods)
+        
+            description += self._helpOsu.add_string_play(top_plays[i], mode=mode, language=self.user['language'], beatmap=beatmap)
+
+        embed = discord.Embed(description=description, colour=colour)
+        embed.set_author(name = name, icon_url=user_image_url)
+
+        await self.message.channel.send(embed=embed)
+
         return

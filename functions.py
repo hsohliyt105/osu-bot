@@ -633,9 +633,7 @@ class HelpOsu(object):
                 if playdata.maxCombo < beatmap.maxCombo:
                     non_choke = helper.OsuPlayData(playdata)
 
-                    hits_fc = self.get_total_hits(mode, non_choke)
-
-                    non_choke.count300 += playdata.countmiss + hits_fc
+                    non_choke.count300 += non_choke.countmiss
                     non_choke.countmiss = 0
                     non_choke.maxCombo = beatmap.maxCombo
                     non_choke_acc = self.get_acc(mode, non_choke)
@@ -767,11 +765,11 @@ class Api(object):
 
         return user
 
-    def get_user_best(self, username = "", user_id = 0, mode = 0):
+    def get_user_best(self, username = "", user_id = 0, mode = 0, limit = 5):
         params = {
                     'k': OSU_API_KEY,
                     'm': mode,
-                    'limit': 100
+                    'limit': limit
                     }
         if username != "":
             params['type'] = "string"

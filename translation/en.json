@@ -51,9 +51,21 @@
         "no_recent_play": "No recent play is found in 24 hours.",
         "completed": "completed"
     },
+    "top": {
+        "osu_id": "Osu user id",
+        "osu_user_url": "osu user url",
+        "or": "or",
+        "mode": "Playing mode",
+        "user_not_found": "User not found",
+        "username": "Osu username",
+        "osu_user_not_set": "Your osu account is not set. More information is on '!help set'",
+        "of_top": "'s top play",
+        "no_top_play": "No top play is found. ",
+        "completed": "completed"
+    },
     "func_add_embed_play": {
         "without_choke": "when fc",
         "max_pp": "max pp",
-        "cleared":  "when cleared"
+        "cleared": "when cleared"
     }
 }

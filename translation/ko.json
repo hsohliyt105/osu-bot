@@ -51,6 +51,18 @@
         "no_recent_play": "24시간 내 플레이가 없습니다.",
         "completed": "완료함"
     },
+    "top": {
+        "osu_id": "오스 유저 id",
+        "osu_user_url": "오스 유저 url",
+        "or": "또는",
+        "mode": "플레이 모드",
+        "user_not_found": "유저를 찾지 못했습니다",
+        "username": "오스 이름",
+        "osu_user_not_set": "오스 계정이 등록되지 않았습니다. '!도움말 등록'에 더 많은 정보가 있습니다",
+        "of_top": "님의 최고 플레이",
+        "no_top_play": "최고 플레이를 발견하지 못했습니다. ",
+        "completed": "완료함"
+    },
     "func_add_embed_play": {
         "without_choke": "풀콤 시",
         "max_pp": "최대",
