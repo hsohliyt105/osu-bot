@@ -1,4 +1,4 @@
-# Discord-bot
+# Osu-bot
   This is a discord bot which gives you information on osu! with several languages.
 
 #requirements
